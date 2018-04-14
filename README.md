@@ -1,3 +1,3 @@
-# tmp
+# Temporary Repository
 
-a sample presentation
+A playground to test new ideas and snippets of code.
