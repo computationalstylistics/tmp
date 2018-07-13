@@ -1,0 +1,281 @@
+---
+title: Przyszłość Polskiej Akademii Nauk i jej instytutów badawczych
+author: Maciej Eder
+date: 6th July, 2018
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    theme: ribbon
+    center: true
+    ratio: 4x3
+    katex: true
+    fig_width: 9
+    fig_height: 6
+---
+
+
+
+## { .white }
+
+<p class="black" style="font-size: 240%; margin-bottom: 0.5em; margin-top: 0.5em;">
+Problemy instytutów humanistycznych</p>
+<p class="black" style="font-size: 120%; margin-bottom: 1em"> 
+Maciej Eder (Instytut Języka Polskiego PAN)</p>
+<p class="black" style="font-size: 80%; margin-bottom: 0.5em;">
+<p><img src="img/logo_ijp_1.png" width="500px"></p>
+<p class="black" style="font-size: 100%; margin-top: 4em;">
+Będlewo, 14 VII 2018
+</p>
+
+
+
+
+
+## Wieloletnie prace zbiorowe
+
+* Instytut Historii im. Tadeusza Manteuffla PAN
+    * Polski słownik biograficzny
+    * Słownik historyczno-geograficzny ziem polskich
+    * Bibliografia historii polskiej
+
+* Instytut Języka Polskiego PAN
+    * Słownik polszczyzny XVI wieku
+    * Polska bibliografia literacka
+
+* Instytut Slawistyki PAN
+    * Słownik prasłowiański
+
+* etc. etc. etc.
+
+
+
+
+
+
+## Wieloletnie prace zbiorowe
+
+* Instytut Języka Polskiego PAN
+    * Słownik staropolski
+    * Wielki Słownik Języka Polskiego
+    * Słownik polszczyzny XVII i XVIII wieku
+    * Słownik łaciny średniowiecznej w Polsce
+    * Słownik gwar polskich
+    * Słownik gwar Mazur i Ostródzkiego
+    * Słownik staropolskich nazw osobowych
+    * Słownik pojęciowy języka staropolskiego
+    * Ogólnosłowiański Atlas Językowy
+    * Atlas Języków Europy
+
+
+
+
+
+## 
+
+<h2 class="shout">89%</h2>
+
+
+
+
+
+
+## 
+
+<h2 class="shout">Po co PAN-owi słowniki</h2>
+
+
+
+
+
+
+
+## Thesaurus Linguae Latinae (1893!)
+
+![word_unigrams](img/tll.png){width=800px}
+
+
+
+
+
+## Staročeský slovník
+
+![word_unigrams](img/starocesky.png){width=800px}
+
+
+
+
+## Middelnederlands woordenboek
+
+![word_unigrams](img/middelnederlands.png){width=800px}
+
+
+
+
+
+## Svenska Akademiens ordbok
+
+![word_unigrams](img/saob.png){width=800px}
+
+
+
+
+
+
+## Trésor de la Langue Française
+
+![word_unigrams](img/cnrs.png){width=800px}
+
+
+
+
+
+
+## BBAW – 32 (!) słowniki i korpusy
+
+![word_unigrams](img/bbaw.png){width=800px}
+
+
+
+
+
+
+## Das Institut für Deutsche Sprache
+
+![word_unigrams](img/ids.png){width=800px}
+
+
+
+
+
+
+## 
+
+<h2 class="shout">A ile za to dają punktów?</h2>
+
+
+
+
+
+
+## SXVII: ofiara własnego sukcesu
+
+![word_unigrams](img/sxvii.png){width=800px}
+
+
+
+
+
+## WSJP: kamień młyński u szyi IJP PAN (?)
+
+![word_unigrams](img/wsjp.png){width=800px}
+
+
+
+
+
+
+
+## 
+
+<h2 class="shout">Czy Polacy zasługują na słowniki?</h2>
+
+
+
+
+
+
+
+
+## 
+
+<h2 class="shout">89%</h2>
+
+
+
+
+
+
+
+## Lingwistyka chemiczna
+
+![chem](img/CHEM_poster_ver7.png){.cover}
+
+
+
+
+
+
+## Sukces czy strzał do cudzej tarczy?
+
+![chem](img/sci_rep.png){width=800px}
+
+
+
+
+
+
+
+
+##
+
+<h2 class="shout">15 punktów</h2>
+
+
+
+
+
+
+
+
+## Powód do dumy?
+
+Indogermanische Forschungen (IF 0.189)
+
+Literary and Linguistic Computing (IF 0.460)
+
+Digital Scholarship in the Humanities (IF 0.715)
+
+R Journal (IF 1.55)
+
+Scientific Reports (IF 4.609)
+
+Mississippi Quarterly (0 kudryków)
+
+
+
+
+
+
+
+## Wpisać chemię, czy może informatykę? DH?
+
+Indogermanische Forschungen (IF 0.189)
+
+Literary and Linguistic Computing (IF 0.460)
+
+<span style="text-decoration: line-through;">Digital Scholarship in the Humanities (IF 0.715)</span>
+
+<span style="text-decoration: line-through;">R Journal (IF 1.55)</span>
+
+<span style="text-decoration: line-through;">Scientific Reports (IF 4.609)</span>
+
+<span style="text-decoration: line-through;">Mississippi Quarterly (0 kudryków)</span>
+
+
+
+
+
+
+## Humanistyka cyfrowa w instytutach PAN
+
+![title](img/loga.png){.cover}
+
+
+
+##
+
+
+
+
+
+

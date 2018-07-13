@@ -1,3 +1,3 @@
-# Temporary Repository
+# Przyszłość Polskiej Akademii Nauk i jej instytutów badawczych
 
-A playground to test new ideas and snippets of code.
+[link do prezentacji](https://computationalstylistics.github.io/tmp/)
