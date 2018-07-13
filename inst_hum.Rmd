@@ -17,15 +17,16 @@ output:
 
 ## { .white }
 
-<p class="black" style="font-size: 240%; margin-bottom: 0.5em; margin-top: 0.5em;">
+<p class="black" style="font-size: 180%; margin-bottom: 0.5em; margin-top: 0.5em;">
 Problemy instytutów humanistycznych</p>
-<p class="black" style="font-size: 120%; margin-bottom: 1em"> 
-Maciej Eder (Instytut Języka Polskiego PAN)</p>
-<p class="black" style="font-size: 80%; margin-bottom: 0.5em;">
+<p class="black" style="font-size: 120%; margin-bottom: 0em"> 
+Maciej Eder</p>
+<p class="black" style="font-size: 80%; margin-bottom: 9em;">
+(Instytut Języka Polskiego PAN)</p>
 <p><img src="img/logo_ijp_1.png" width="500px"></p>
-<p class="black" style="font-size: 100%; margin-top: 4em;">
+<!-- <p class="black" style="font-size: 100%; margin-top: 2em;">
 Będlewo, 14 VII 2018
-</p>
+</p> -->
 
 
 
@@ -38,7 +39,7 @@ Będlewo, 14 VII 2018
     * Słownik historyczno-geograficzny ziem polskich
     * Bibliografia historii polskiej
 
-* Instytut Języka Polskiego PAN
+* Instytut Badań Literackich PAN
     * Słownik polszczyzny XVI wieku
     * Polska bibliografia literacka
 
@@ -239,7 +240,7 @@ R Journal (IF 1.55)
 
 Scientific Reports (IF 4.609)
 
-Mississippi Quarterly (0 kudryków)
+Mississippi Quarterly (0 punktów)
 
 
 
