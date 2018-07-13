@@ -188,7 +188,7 @@ Będlewo, 14 VII 2018
 
 ## 
 
-<h2 class="shout">89%</h2>
+<h2 class="shout">89% _vs._ 11%</h2>
 
 
 
@@ -196,7 +196,7 @@ Będlewo, 14 VII 2018
 
 
 
-## Lingwistyka chemiczna
+## 
 
 ![chem](img/CHEM_poster_ver7.png){.cover}
 
