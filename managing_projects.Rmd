@@ -1,0 +1,298 @@
+---
+title: "Managing Projects: Two Examples"
+author: Maciej Eder
+date: 25th July, 2018
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    theme: ribbon
+    center: true
+    ratio: 4x3
+    katex: true
+    fig_width: 9
+    fig_height: 6
+---
+
+
+
+## { .white }
+
+<p class="black" style="font-size: 180%; margin-bottom: 0.5em; margin-top: 0.5em;">
+Managing Projects: Two Examples</p>
+<p class="black" style="font-size: 120%; margin-bottom: 0em"> 
+Maciej Eder</p>
+<p class="black" style="font-size: 80%; margin-bottom: 9em;">
+(Instytut Języka Polskiego PAN)</p>
+<p><img src="img/logo_ijp_1.png" width="500px"></p>
+<!-- <p class="black" style="font-size: 100%; margin-top: 2em;">
+Będlewo, 25th July 2018
+</p> -->
+
+
+
+
+
+
+## Chemical Linguistics
+
+* 5-year project founded by National Centre for Science
+* Three partners:
+    * Institute of Organic Chemistry (Polish Academy of Science)
+    * Institute of Mathematics (University of Warsaw)
+    * Institute of Polish Language (Polish Academy of Sciences)
+
+
+
+## 
+
+![chem](img/CHEM_poster_ver7.png){.cover}
+
+
+
+
+## How to publish in ‘real’ (?) sciences
+
+![chem](img/sci_rep.png){width=800px}
+
+
+
+
+
+
+## Issues to overcome
+
+* Three different cultures of scientific thinking
+* Different expectations when it comes to the main goals of the project
+* Communication
+    * two teams in Warsaw, one in Krakow
+    * PI based in South Korea
+    * regular Skype calls
+
+
+
+
+
+## Risk management
+
+* internal sources of risk
+    * a team member leaving the team
+    * troubled collaborators
+    * conflicts in the team
+    * delays, due to different reasons
+    * everything turns our more complex than one assumed
+
+* external sources of risk
+    * the amount of work was bigger than estimated (e.g. new sources)
+    * the research hypothesis was not confirmed
+
+
+
+
+## 
+
+<h2 class="shout">IJP PAN</h2>
+
+
+
+
+
+## Institute of Polish Language
+
+* 100 full time employees: 
+    * 75 faculties
+    * 25 non-faculty members (incl. post-docs)
+* 25 PhD students
+
+
+## Overview
+
+* Areas of interest:
+    * lexicography
+    * linguistics
+    * corpora
+    * linguistic resources
+* Mission:
+    * documenting the Polish language in its historical, dialectal etc. variants
+    * doing cutting edge scholarship in linguistics
+    
+    
+    
+    
+    
+    
+## Constrains
+
+* State founded: renewed on a 4-year basis
+* Founds depend on the number of faculties (“N”)
+* The faculties being evaluated by the Ministry
+
+
+
+
+
+## Long term projects at the Academy
+
+* Institute of History
+    * Polski słownik biograficzny
+    * Słownik historyczno-geograficzny ziem polskich
+    * Bibliografia historii polskiej
+
+* Institute of Literary Research
+    * Słownik polszczyzny XVI wieku
+    * Polska bibliografia literacka
+
+* Institute of Slavistics
+    * Słownik prasłowiański
+
+* etc. etc. etc.
+
+
+
+
+
+
+## Long term projects at the Academy
+
+* Institute of the Polish Language
+    * Słownik staropolski
+    * Wielki Słownik Języka Polskiego
+    * Słownik polszczyzny XVII i XVIII wieku
+    * Słownik łaciny średniowiecznej w Polsce
+    * Słownik gwar polskich
+    * Słownik gwar Mazur i Ostródzkiego
+    * Słownik staropolskich nazw osobowych
+    * Słownik pojęciowy języka staropolskiego
+    * Ogólnosłowiański Atlas Językowy
+    * Atlas Języków Europy
+
+
+
+
+
+## 
+
+<h2 class="shout">89%</h2>
+
+
+
+
+
+
+## 
+
+<h2 class="shout">Why bother?</h2>
+
+
+
+
+
+
+
+## Thesaurus Linguae Latinae (1893!)
+
+![word_unigrams](img/tll.png){width=800px}
+
+
+
+
+
+## Staročeský slovník
+
+![word_unigrams](img/starocesky.png){width=800px}
+
+
+
+
+## Middelnederlands woordenboek
+
+![word_unigrams](img/middelnederlands.png){width=800px}
+
+
+
+
+
+## Svenska Akademiens ordbok
+
+![word_unigrams](img/saob.png){width=800px}
+
+
+
+
+
+
+## Trésor de la Langue Française
+
+![word_unigrams](img/cnrs.png){width=800px}
+
+
+
+
+
+
+## BBAW – 32 (!) dictionaries and corpora
+
+![word_unigrams](img/bbaw.png){width=800px}
+
+
+
+
+
+
+## Das Institut für Deutsche Sprache
+
+![word_unigrams](img/ids.png){width=800px}
+
+
+
+
+
+
+## 
+
+<h2 class="shout">Credit Points</h2>
+
+
+
+
+
+
+## SXVII: a victim of its own success
+
+![word_unigrams](img/sxvii.png){width=800px}
+
+
+
+
+
+## WSJP: a troublemaker (?)
+
+![word_unigrams](img/wsjp.png){width=800px}
+
+
+
+
+
+
+
+## 
+
+<h2 class="shout">89% _vs._ 11%</h2>
+
+
+
+
+
+
+## Digital Humanities at the Institute
+
+![title](img/loga.png){.cover}
+
+
+
+##
+
+
+
+
+
+
