@@ -35,6 +35,8 @@ RoxygenNote: 6.0.1
 Encoding: UTF-8
 Suggests: knitr
 VignetteBuilder: knitr
+NeedsCompilation: no
+Packaged: 2018-02-03 23:33:18 UTC; douglas
 Author: Vadim Makeev [aut, cph] (shower, https://github.com/shower/shower),
   Oleg Jahson [aut, cph] (shower, https://github.com/shower/shower),
   Slava Oliyanchuk [aut, cph] (shower, https://github.com/shower/shower),
@@ -48,14 +50,6 @@ Author: Vadim Makeev [aut, cph] (shower, https://github.com/shower/shower),
   RStudio [cph],
   Mango Solutions [cph]
 Maintainer: Doug Ashton <dashton@mango-solutions.com>
-Built: R 3.5.0; ; 2018-06-12 15:48:09 UTC; unix
-RemoteType: github
-RemoteHost: https://api.github.com
-RemoteRepo: rmdshower
-RemoteUsername: mangothecat
-RemoteRef: master
-RemoteSha: 343f11c7efad7100d477e497892bd44a674fa3de
-GithubRepo: rmdshower
-GithubUsername: mangothecat
-GithubRef: master
-GithubSHA1: 343f11c7efad7100d477e497892bd44a674fa3de
+Repository: CRAN
+Date/Publication: 2018-02-04 15:43:25 UTC
+Built: R 3.5.0; ; 2018-04-24 08:54:11 UTC; unix
