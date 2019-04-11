@@ -1,0 +1,467 @@
+---
+title: "Doskonałość naukowa w humanistyce: filologia w zmieniającym się świecie"
+author: Maciej Eder (Instytut Języka Polskiego PAN, Kraków)
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    theme: ribbon
+    center: true
+    ratio: 4x3
+    katex: true
+    fig_width: 9
+    fig_height: 6
+---
+
+
+
+
+
+
+
+
+
+
+
+
+## { .white }
+
+<p class="black" align="center" style="font-size: 180%; margin-top: 0em;">Doskonałość naukowa w humanistyce: </br> filologia w zmieniającym się świecie</p>
+<p class="black" align="center" style="font-size: 120%; margin-bottom: 5em"> Maciej Eder</p>
+<!-- <p class="black" align="center" style="font-size: 80%; margin-bottom: 6em;">Instytut Języka Polskiego PAN</p> -->
+<p align="center"><img src="img/logo_ijp_1.png" width="300px"></p>
+<!-- <p class="black" style="font-size: 100%; margin-top: 2em;"> UP Kraków, 11 IV 2019 </p> -->
+
+
+
+
+
+
+
+---
+
+## Instytut Języka Polskiego PAN
+
+* Słownik staropolski
+* Wielki Słownik Języka Polskiego
+* Słownik polszczyzny XVII i XVIII wieku
+* Słownik łaciny średniowiecznej w Polsce
+* Słownik gwar polskich
+* Słownik gwar Mazur i Ostródzkiego
+* Słownik staropolskich nazw osobowych
+* Słownik pojęciowy języka staropolskiego
+* Ogólnosłowiański Atlas Językowy
+* Atlas Języków Europy
+
+
+
+
+
+---
+
+## 
+
+<h2 class="shout">0 punktów</h2>
+
+
+
+
+
+---
+
+## SXVII: ofiara własnego sukcesu (?)
+
+<img src="img/sxvii.png" width="800px"/>
+
+
+
+
+
+
+---
+
+## WSJP: kamień młyński u szyi IJP PAN (?)
+
+
+<img src="img/wsjp.png" width="800px"/>
+
+
+
+
+
+
+
+
+
+---
+
+## 
+
+<h2 class="shout">85%</h2>
+
+
+
+
+
+
+
+---
+
+## doskonałość naukowa: Cambridge
+
+The mission of the University of Cambridge is to contribute to society through the pursuit of education, learning and research at the highest international levels of excellence.
+
+
+
+
+
+
+
+
+---
+
+## Doskonałość naukowa: ERC
+
+<img src="img/ERC.jpg" width="400px"/>
+
+* High risk / high gain
+* vs. incremental knowledge
+
+
+
+
+
+
+
+
+
+---
+
+## przeszkody na drodze do doskonałości
+
+1. niedostateczna komunikacja (brak synergii)
+2. niewielki kontekst międzynarodowy, mała mobilność
+3. zamknięcie się w ciasno zdefiniowanych dyscyplinach
+4. parametryzacyjny gorset
+5. niedostateczna aktywność grantowa
+
+
+
+
+
+
+---
+
+## synergia
+
+* komunikacja między zespołami badawczymi
+    * czym się zajmują koledzy z sąsiedniej katedry?
+* reguła kanapy i ekspresu do kawy
+    * zespół jest efektywny, gdy się spotyka
+* inicjatywy w Instytucie Języka Polskiego PAN
+    * Lunch z Humanistyką Cyfrową
+    * Hortus Deliciarum
+    * Dialogi Staropolskie
+    * Spotkania z Gwarą
+
+
+
+
+
+---
+
+## kontekst międzynarodowy
+
+* oczywiste założenia bywają błędne
+    * gdzie jest najlepsza polonistyka na świecie?
+    * wiadomo: gdzieś w Polsce
+    * po cóż zatem szukać inspiracji za granicą?
+* ale: jak to się ma do innych filologii narodowych?
+    * por. wydziały portugalistyki w Portugalii
+    * por. wydziały hungarystyki na Węgrzech
+    * etc. etc.
+
+
+
+
+
+
+---
+
+## kontekst międzynarodowy
+
+
+* filologia narodowa nie może być usprawiedliwieniem
+* w naukach o zasięgu lokalnym też obowiązuje najwyższa jakość badań!
+
+
+
+
+
+
+
+
+---
+
+## umiędzynarodowienie w IJP PAN
+
+* granty o zasięgu międzynarodowym
+    * COST Action _Distant Reading_
+    * COST Action _eLexicography_
+    * COST Action _Medioevo Europeo_
+    * _Deep Learning in Computational Stylistics_
+
+* visiting fellows na stażach różnej długości
+    * Yale University (Fulbright)
+    * University of Alberta (National Research Council, Canada)
+    * Universidad de Sevilla (Erasmus+)
+    * Universität Würzburg (COST Action)
+    * Università di Padova (COST Action)
+    * . . .  
+
+
+
+
+---
+
+## umiędzynarodowienie przez grupy badawcze
+
+<img src="img/csg.png" width="900px"/>
+
+
+
+
+
+
+
+---
+
+## parametryzacja
+
+* buchalteryjne podejście do parametrii zabija ducha nauki
+* potrzebna jest odwaga publikowania poza punktacją
+    * _Słownik polszczyzny XVII wieku_
+    * Renaissance Quarterly
+    * Mississippi Quarterly
+    * Frontiers in Digital Humanities
+    * . . . 
+
+
+
+
+
+---
+
+## interdyscyplinarność
+
+* interdyscyplinarność nie może oznaczać a-dyscyplinarności!
+* złudzenie, że można osiągnąć doskonałość w kilku dyscyplinach
+* rzeczywista interdyscyplinarność: współpraca specjalistów z różnych dyscyplin
+
+
+
+
+
+
+
+
+---
+
+## {.cover}
+
+<img src="img/CHEM_poster_ver7.png" width="800px"/>
+
+
+
+
+
+---
+
+## wartość: 40 pkt. (= 140 nowych pkt.)
+
+<img src="img/sci_rep.png" width="800px"/>
+
+
+
+
+<!-- 
+
+---
+
+## aktywność grantowa
+
+* 
+
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+---
+
+## Pascal: dwie nieskończoności
+
+* Podróż w wyobraźni do końca (?) świata
+* Podróż w wyobraźni do wnętrza ciała
+* I nigdzie nie ma granicy
+
+
+
+
+
+
+
+
+
+
+---
+
+## rewolucja naukowa
+
+<img src="img/pascal_two_infinities_smaller.png" width="500px"/>
+
+
+
+
+
+
+
+---
+
+## rewolucja w humanistyce
+
+* Nowe narzędzia: komputer & internet
+* Nowe zasoby: miliony książek
+* Nowe metody: data mining, machine learning
+* Nowe dyscypliny: Digital Humanities
+
+
+
+
+
+
+
+---
+
+## korpus tekstów staropolskich
+
+<img src="img/staropolska.png" width="700px"/>
+
+
+
+
+
+
+
+
+---
+
+## kim był Gall Anonim?
+
+<img src="img/gallus_fragm.png" width="800px"/>
+
+* teza o podobnieństwie stylistycznym _Kroniki_ Galla i _Translacji świętego Mikołaja_ Mnicha z Lido
+
+
+
+
+
+
+
+
+---
+
+## Gallus Anonymous vs. Italus Anonymus
+
+<img src="img/gallus_network.png" width="800px"/>
+
+
+
+
+
+
+
+
+
+---
+
+## rekonstrukcja biblioteki Kopernika
+
+<img src="img/kopernik_small.jpg" width="700px"/>
+
+
+
+
+
+
+
+
+---
+
+## miary korpusowe w chemii organicznej
+
+<img src="img/tf-idf_chemistry.jpg" width="800px"/>
+
+
+
+
+
+
+
+
+---
+
+## humanistyka w dzisiejszym świecie
+
+* postprawda i fake news
+* detekcja populizmu
+* smart cities
+* chatboty
+* niebezpieczeństwa AI
+* . . .
+
+
+
+
+
+
+
+---
+
+## przyszłość już nadeszła
+
+* mamy szansę na przeprowadzenie badań w niespotykanej skali
+* przed nami odpowiedzialność za dygitalizację dorobku ludzkości
+* przed nami szansa na szukanie dwóch nieskończoności...
+
+
+
+
+
+
+---
+
+## dziekuję za uwagę!
+
+
+[\@MaciejEder](https://twitter.com/MaciejEder)
+
+maciej.eder@ijp.pan.pl
+
+[http://maciejeder.org](http://maciejeder.org/pl)
+
+
+
+
+
+
+###############
+
+ 
