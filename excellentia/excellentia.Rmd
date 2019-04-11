@@ -119,7 +119,7 @@ The mission of the University of Cambridge is to contribute to society through t
 
 ---
 
-## Doskonałość naukowa: ERC
+## doskonałość naukowa: ERC
 
 <img src="img/ERC.jpg" width="400px"/>
 
