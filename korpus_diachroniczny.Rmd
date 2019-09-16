@@ -1,0 +1,613 @@
+---
+title: Narodowy Korpus Diachroniczny Polszczyzny. Projekt
+date: 17 IX 2019
+output: 
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    fig_width: 9
+    fig_height: 6
+---
+
+
+
+
+```{r setup, include=FALSE}
+# set global chunk options
+
+library(knitr)
+library(fmsb)
+
+# function to get the number of attestations of a given form in particular texts
+attestations = function(file) {
+    current.table = read.table(file)
+    get.attestations = paste(current.table[,3], current.table[,4], sep="_")
+    table(get.attestations)
+}
+
+wiekszy = attestations("data/wiekszy.txt")
+wietszy = attestations("data/wietszy.txt")
+
+load("data/COHA_distinctive_features_1000mfw.RData")
+
+
+# a function to compute the proportions of the old and the new form
+uporzadkuj = function(dawne, nowe, 
+                      zakres.chrono = 20,
+                      krok = 10,
+                      zacznij = 1350, 
+                      zakoncz = 1960) {
+
+    dawne = dawne[sort(union(names(dawne), names(nowe)))]
+    names(dawne) = sort(union(names(dawne), names(nowe)))
+    dawne[is.na(dawne)] = 0
+
+    nowe = nowe[sort(union(names(dawne), names(nowe)))]
+    names(nowe) = sort(union(names(dawne), names(nowe)))
+    nowe[is.na(nowe)] = 0
+    
+	results.all = c()
+	shift.dates.all = c()
+	skoki.chrono = seq(0, (zakres.chrono-krok), (zakres.chrono / (zakres.chrono/krok)) )
+	
+	for(i in skoki.chrono) {
+			cezury = seq(zacznij, zakoncz, zakres.chrono) + i
+			daty = as.numeric(gsub("^([0-9]{4}).+", "\\1", names(dawne)))
+			przedzialy.czasowe = findInterval(daty, cezury)
+			
+			x = c()
+			y = c()
+			
+			for(j in 1: length(cezury)) {
+				x[j] = sum(nowe[przedzialy.czasowe == j])
+				y[j] = sum(dawne[przedzialy.czasowe == j])
+			}
+			
+			results = x / (x+y)
+			
+			# adjusting some values if dividing by O occurred
+			results[is.nan(results)] = NA
+			
+			# shifting the scale so that the value between two dates is reached
+			shift.dates = cezury + ((cezury[2] - cezury[1]) / 2)
+			# getting rid of the last value
+			#shift.dates = shift.dates[-length(shift.dates)]
+			
+			results.all = c(results.all, results)
+			shift.dates.all = c(shift.dates.all, shift.dates)
+	}
+	
+	# ordering the results
+	results.all = results.all[order(shift.dates.all)]
+	shift.dates.all = sort(shift.dates.all)
+	names(results.all) = shift.dates.all
+	
+	# getting rid of NA values
+	results.all = results.all[!is.na(results.all)]
+return(results.all)
+}
+
+
+my.blue = rgb(0.15, 0.45, 0.96)
+my.green = rgb(0.15, 0.85, 0.27, 0.7)
+my.red = rgb(0.92, 0.3, 0.3, 0.6)
+my.grey = rgb(0,0,0,.6)
+my.orange = rgb(1,0.5,0.2,0.6) 
+my.teal = rgb(0, 0.5, 0.5, 0.7)  #### or: my.teal = rgb(0.24, 0.65, 0.75, 0.7)
+my.violet = rgb(0.75, 0.25, 0.82, 0.7)
+
+opts_chunk$set(cache=TRUE)
+```
+
+
+
+
+
+
+
+
+## { .white }
+
+
+<p style="font-size: 180%; margin-bottom: 0.5em">
+Narodowy Korpus </br> Diachroniczny Polszczyzny
+</p>
+<p style="font-size: 120%; margin-bottom: 0.1em;">
+Projekt
+</p>
+
+---
+
+
+
+
+
+
+
+
+
+## _więtszy_ > _większy_
+
+``` {r echo = FALSE, message = FALSE}
+piotrowski = uporzadkuj(wietszy, wiekszy, zakres.chrono = 20, krok = 10)
+plot(piotrowski ~ as.numeric(names(piotrowski)), ylim=c(0,1), xlab="rok", ylab="udział formy innowacyjnej")
+model = glm(piotrowski ~ as.numeric(names(piotrowski)), family=quasibinomial(logit))
+lines(names(piotrowski), model$fitted, type="l", col=my.blue, lwd=3)
+legend("topleft", c("więtszy > większy"), 
+       text.col=my.blue,
+       bty="n",
+       lty=1, col=my.blue, lwd=3
+       )
+r2 = round(NagelkerkeR2(model)$R2, 3)
+legend("bottomright", bty="n", legend = substitute(paste(italic(R)^2, " = ", Nagelkerke), list(Nagelkerke = r2)))
+
+```
+
+
+
+
+
+
+
+## Korpus: zszycie istniejących zasobów
+
+* korpus staropolski [ijp.pan.pl](ijp.pan.pl)
+* korpus Słownika XVI wieku
+* KorBa, czyli korpus polszczyzny barokowej
+* tomy z serii Bibliotheca Curiosa
+* tomy z serii Biblioteka Pisarzy Staropolskich
+* kilkanaście kazań polskich z XVII-XIX wieku
+* kilkadziesiąt tekstów prozatorskich z XVI wieku
+* teksty z portalu [Staropolska.pl](Staropolska.pl)
+* teksty z portalu [Wolnelektury.pl](Wolnelektury.pl)
+* The Benchmark Corpus of Polish: 100 powieści
+* 74 powieści z NKJP, obejmujące lata 1830--2010
+
+---
+
+
+
+## Korpus: praca kilkudziesięciu ludzi
+
+* zespół Słownika polszczyzny XVI wieku
+* zespół Słownika polszczyzny XVII wieku
+* zespół Słownika staropolskiego
+* zespół fundacji Nowoczesna Polska
+* transkrypcje wykonane na potrzeby korpusu:
+    * Maria Kozłowska, Roman Mazurkiewicz, Joanna Duska, Maciej Eder
+* pozyskanie i weryfikacja tekstów rozproszonych:
+    * Jan Rybicki, Rafał Górski, Magdalena Król
+* uspójnienie całości (i znacznie więcej):
+    * **Magdalena Król**
+
+---
+
+
+
+## 
+
+``` {r echo = FALSE, message = FALSE}
+word = "and"
+# extracting the values for a given word, as a function of time
+current.word = as.numeric(sapply(current.year.results, function(x) x[x[,2] == word, 4]))
+plot(current.word ~ c(1835:1984), ylim=c(-.3,.3), type = "n", xlab = "rok", ylab = "siła dyskryminacyjna")
+
+arrows(1871,0.3,1871,0.2, length = 0.1, col = "grey")
+text(1871,0.3, labels = "1871", pos = 2, srt = 90, cex = 0.6)
+arrows(1918,0.3,1918,-0.03, length = 0.1, col = "grey")
+text(1918,0.3, labels = "1918", pos = 2, srt = 90, cex = 0.6)
+arrows(1929,0.3,1929,0.24, length = 0.1, col = "grey")
+text(1929,0.3, labels = "1929", pos = 2, srt = 90, cex = 0.6)
+arrows(1955,0.3,1955,0.1, length = 0.1, col = "grey")
+text(1955,0.3, labels = "1955", pos = 2, srt = 90, cex = 0.6)
+
+abline(h = 0, lty=2, col = "grey")
+current.word[is.na(current.word)] = 0
+current.word.smoother = lowess(current.word, f=1/5)$y
+lines(current.word.smoother ~ c(1835:1984), pch=20, col = my.green, lwd=3 )
+
+word = "that"
+# extracting the values for a given word, as a function of time
+current.word = as.numeric(sapply(current.year.results, function(x) x[x[,2] == word, 4]))
+current.word[is.na(current.word)] = 0
+current.word.smoother = lowess(current.word, f=1/5)$y
+lines(current.word.smoother ~ c(1835:1984), pch=20, col = my.violet, lwd=3 )
+
+word = "is"
+# extracting the values for a given word, as a function of time
+current.word = as.numeric(sapply(current.year.results, function(x) x[x[,2] == word, 4]))
+current.word[is.na(current.word)] = 0
+current.word.smoother = lowess(current.word, f=1/5)$y
+lines(current.word.smoother ~ c(1835:1984), pch=20, col = my.red, lwd=3 )
+
+word = "been"
+# extracting the values for a given word, as a function of time
+current.word = as.numeric(sapply(current.year.results, function(x) x[x[,2] == word, 4]))
+current.word[is.na(current.word)] = 0
+current.word.smoother = lowess(current.word, f=1/5)$y
+lines(current.word.smoother ~ c(1835:1984), pch=20, col = my.teal, lwd=3 )
+
+word = "not"
+# extracting the values for a given word, as a function of time
+current.word = as.numeric(sapply(current.year.results, function(x) x[x[,2] == word, 4]))
+current.word[is.na(current.word)] = 0
+current.word.smoother = lowess(current.word, f=1/5)$y
+lines(current.word.smoother ~ c(1835:1984), pch=20, col = my.orange, lwd=3 )
+
+word = "the"
+# extracting the values for a given word, as a function of time
+current.word = as.numeric(sapply(current.year.results, function(x) x[x[,2] == word, 4]))
+current.word[is.na(current.word)] = 0
+current.word.smoother = lowess(current.word, f=1/5)$y
+lines(current.word.smoother ~ c(1835:1984), pch=20, col = my.blue, lwd=3 )
+
+word = "'s"
+# extracting the values for a given word, as a function of time
+current.word = as.numeric(sapply(current.year.results, function(x) x[x[,2] == word, 4]))
+current.word[is.na(current.word)] = 0
+current.word.smoother = lowess(current.word, f=1/5)$y
+lines(current.word.smoother ~ c(1835:1984), pch=20, col = my.grey, lwd=3 )
+
+legend("bottomleft", legend = c("and", "that", "is", "been", "not", "the", "’s"),
+    col = c(my.green, my.violet, my.red, my.teal, my.orange, my.blue, my.grey), 
+    lwd = 3, bty = "n")
+```
+
+
+
+
+##
+
+```{r echo = FALSE, message = FALSE}
+word = "and"
+# extracting the values for a given word, as a function of time
+current.word = as.numeric(sapply(current.year.results, function(x) x[x[,2] == word, 4]))
+plot(current.word ~ c(1835:1984), ylim=c(-.3,.3), type = "n", xlab = "rok", ylab = "siła dyskryminacyjna")
+
+abline(h = 0, lty=2, col = "grey")
+
+arrows(1929,0.3,1929,0.24, length = 0.1, col = "grey")
+text(1929,0.3, labels = "1929", pos = 2, srt = 90, cex = 0.6)
+arrows(1935,-0.3,1935,-0.24, length = 0.1, col = "grey")
+text(1935,-0.26, labels = "1935", pos = 2, srt = 90, cex = 0.6)
+
+word = "of"
+# extracting the values for a given word, as a function of time
+current.word = as.numeric(sapply(current.year.results, function(x) x[x[,2] == word, 4]))
+current.word[is.na(current.word)] = 0
+current.word.smoother = lowess(current.word, f=1/5)$y
+lines(current.word.smoother ~ c(1835:1984), pch=20, col = my.red, lwd=3 )
+
+word = "'s"
+# extracting the values for a given word, as a function of time
+current.word = as.numeric(sapply(current.year.results, function(x) x[x[,2] == word, 4]))
+current.word[is.na(current.word)] = 0
+current.word.smoother = lowess(current.word, f=1/5)$y
+lines(current.word.smoother ~ c(1835:1984), pch=20, col = my.grey, lwd=3 )
+
+legend("bottomleft", legend = c("of", "’s"),
+    col = c(my.red, my.grey), 
+    lwd = 3, bty = "n")
+```
+
+
+
+
+
+
+## 
+
+``` {r echo = FALSE, message = FALSE}
+#
+load("data/PL_distinctive_features_1000mfw.Rdata")
+dates = as.numeric(names(current.year.results))
+
+word = "jeśli"
+# extracting the values for a given word, as a function of time
+current.word = as.numeric(sapply(current.year.results, function(x) x[x[,2] == word, 4]))
+plot(current.word ~ dates, ylim=c(-.2,.2), type = "n", xlab = "rok", ylab = "siła dyskryminacyjna")
+
+arrows(1591, 0.2, 1591, 0.09, length = 0.1, col = "grey")
+text(1591,0.2, labels = "1591", pos = 2, srt = 90, cex = 0.6)
+arrows(1763, 0.2, 1763, 0.14, length = 0.1, col = "grey")
+text(1763, 0.2, labels = "1763", pos = 2, srt = 90, cex = 0.6)
+arrows(1655, -0.2, 1655, -0.1, length = 0.1, col = "grey")
+text(1655, -0.18, labels = "1655", pos = 2, srt = 90, cex = 0.6)
+
+abline(h = 0, lty=2, col = "grey")
+current.word[is.na(current.word)] = 0
+current.word.smoother = lowess(current.word, f=1/5)$y
+lines(current.word.smoother ~ dates, pch=20, col = my.green, lwd=3 )
+
+word = "na"
+# extracting the values for a given word, as a function of time
+current.word = as.numeric(sapply(current.year.results, function(x) x[x[,2] == word, 4]))
+current.word[is.na(current.word)] = 0
+current.word.smoother = lowess(current.word, f=1/5)$y
+lines(current.word.smoother ~ dates, pch=20, col = my.violet, lwd=3 )
+
+word = "nie"
+# extracting the values for a given word, as a function of time
+current.word = as.numeric(sapply(current.year.results, function(x) x[x[,2] == word, 4]))
+current.word[is.na(current.word)] = 0
+current.word.smoother = lowess(current.word, f=1/5)$y
+lines(current.word.smoother ~ dates, pch=20, col = my.red, lwd=3 )
+
+word = "się"
+# extracting the values for a given word, as a function of time
+current.word = as.numeric(sapply(current.year.results, function(x) x[x[,2] == word, 4]))
+current.word[is.na(current.word)] = 0
+current.word.smoother = lowess(current.word, f=1/5)$y
+lines(current.word.smoother ~ dates, pch=20, col = my.teal, lwd=3 )
+
+word = "już"
+# extracting the values for a given word, as a function of time
+current.word = as.numeric(sapply(current.year.results, function(x) x[x[,2] == word, 4]))
+current.word[is.na(current.word)] = 0
+current.word.smoother = lowess(current.word, f=1/5)$y
+lines(current.word.smoother ~ dates, pch=20, col = my.orange, lwd=3 )
+
+word = "a"
+# extracting the values for a given word, as a function of time
+current.word = as.numeric(sapply(current.year.results, function(x) x[x[,2] == word, 4]))
+current.word[is.na(current.word)] = 0
+current.word.smoother = lowess(current.word, f=1/5)$y
+lines(current.word.smoother ~ dates, pch=20, col = my.blue, lwd=3 )
+
+word = "i"
+# extracting the values for a given word, as a function of time
+current.word = as.numeric(sapply(current.year.results, function(x) x[x[,2] == word, 4]))
+current.word[is.na(current.word)] = 0
+current.word.smoother = lowess(current.word, f=1/5)$y
+lines(current.word.smoother ~ dates, pch=20, col = my.grey, lwd=3 )
+
+legend("bottomleft", legend = c("jeśli", "na", "nie", "się", "już", "a", "i"),
+    col = c(my.green, my.violet, my.red, my.teal, my.orange, my.blue, my.grey), 
+    lwd = 3, bty = "n")
+```
+
+
+
+
+
+
+
+
+
+
+
+## Polski korpus diachroniczny = racja stanu
+
+* COHA 1800–2010: 
+    * 400 mln słów
+* Google n-grams 1600–2000:
+    * 5 bln słów
+* korpus diachroniczny polszczyzny: 
+    * 25 mln słów
+
+
+
+
+
+
+## Korpus: pokrycie diachroniczne
+
+
+``` {r echo = FALSE, message = FALSE}
+liczba_slow = c(2501, 9307, 34198, 36455, 4650, 175110, 74011, 14057, 18917, 11665, 11875, 344, 113743, 3163, 5808, 5083, 43794, 752, 42607, 15343, 10105, 38140, 2972, 785, 10705, 11207, 2243, 7925, 530, 11434, 47689, 184519, 8134, 33152, 24221, 16078, 38229, 20996, 34064, 185324, 16379, 5117, 31343, 31938, 58074, 19514, 50185, 23386, 7823, 87076, 27270, 111033, 27564, 15235, 38169, 32572, 676, 2745, 11419, 15440, 90689, 17931, 169249, 63190, 104999, 264831, 108954, 14066, 239143, 169970, 166391, 22161, 109525, 81471, 83280, 41496, 387424, 21767, 33791, 61198, 38688, 127558, 13047, 43535, 72544, 1399, 6690, 5902, 269986, 35021, 33421, 28933, 74662, 43276, 163932, 93848, 46043, 23216, 4078, 41702, 118682, 61413, 1306, 32982, 38964, 54445, 190058, 43116, 4457, 13999, 73781, 1551, 3035, 1292, 25022, 4917, 61085, 2910, 14713, 29452, 206466, 62512, 701, 4322, 54241, 118134, 949, 25924, 31314, 27236, 116820, 47396, 206459, 176245, 45179, 93911, 115969, 27763, 129121, 69581, 31944, 384, 291085, 135977, 229, 7928, 95357, 148186, 23123, 134102, 206512, 12426, 29328, 34639, 58263, 29384, 17052, 4961, 11583, 70528, 14120, 12547, 703, 2388, 14351, 2889, 1294, 59274, 122532, 25659, 96768, 18532, 499, 11050, 2199, 1013, 1440, 3779, 99493, 18219, 9495, 21992, 120667, 939, 17652, 46712, 19976, 62977, 48343, 221509, 5182, 301301, 221019, 82228, 21199, 39285, 46985, 1178, 98392, 32904, 247554, 288991, 25966, 120277, 246393, 16821, 29854, 53483, 85596, 25211, 76517, 3660, 119267, 5133, 609, 30310, 57513, 38517, 2061, 4702, 10009, 10660, 26090, 29684, 228, 249897, 233, 14474, 68277, 15855, 18978, 75629, 181, 58268, 85820, 97164, 166595, 229364, 123942, 61509)
+pokrycie_chrono = c(1380, 1390, 1400, 1449, 1450, 1455, 1460, 1465, 1475, 1482, 1490, 1500, 1510, 1513, 1521, 1524, 1528, 1530, 1532, 1533, 1534, 1535, 1536, 1539, 1540, 1542, 1544, 1545, 1556, 1557, 1558, 1561, 1562, 1563, 1564, 1565, 1567, 1568, 1569, 1570, 1571, 1572, 1573, 1578, 1583, 1584, 1585, 1586, 1587, 1588, 1590, 1592, 1593, 1594, 1595, 1597, 1598, 1599, 1600, 1601, 1603, 1605, 1606, 1607, 1608, 1609, 1610, 1611, 1612, 1613, 1614, 1615, 1616, 1617, 1618, 1619, 1620, 1621, 1622, 1623, 1624, 1625, 1626, 1627, 1628, 1629, 1630, 1631, 1632, 1633, 1634, 1635, 1636, 1637, 1638, 1639, 1640, 1641, 1642, 1643, 1644, 1645, 1646, 1647, 1648, 1649, 1650, 1651, 1652, 1653, 1654, 1655, 1656, 1658, 1659, 1660, 1661, 1662, 1663, 1664, 1665, 1666, 1667, 1668, 1669, 1670, 1671, 1672, 1673, 1674, 1675, 1676, 1677, 1678, 1679, 1680, 1681, 1682, 1683, 1684, 1685, 1686, 1688, 1689, 1690, 1691, 1692, 1693, 1694, 1695, 1696, 1697, 1698, 1699, 1700, 1701, 1702, 1703, 1704, 1705, 1706, 1707, 1708, 1709, 1712, 1714, 1715, 1716, 1717, 1718, 1719, 1720, 1721, 1722, 1724, 1725, 1726, 1727, 1728, 1730, 1731, 1732, 1733, 1734, 1736, 1738, 1739, 1740, 1741, 1743, 1744, 1745, 1746, 1747, 1748, 1749, 1750, 1751, 1752, 1753, 1754, 1756, 1762, 1763, 1765, 1766, 1767, 1769, 1770, 1771, 1772, 1774, 1775, 1780, 1784, 1785, 1790, 1796, 1820, 1822, 1823, 1825, 1826, 1828, 1829, 1830, 1831, 1832, 1834, 1835, 1837, 1839, 1840, 1842, 1846, 1850, 1851, 1853, 1855, 1856)
+plot(liczba_slow ~ pokrycie_chrono, type = "h", col=my.teal, lwd=3, axes = FALSE, ylim = c(0, 500000), xlab = "rok", ylab = "liczba słów")
+axis(2, at = c(0, 100000, 200000,300000,400000,500000), labels = c("0", "100 tys.", "200 tys.", "300 tys.", "400 tys.", "500 tys."))
+axis(1)
+box()
+```
+
+
+
+
+
+
+
+## A. Fredro, _Trzy po trzy_ (1846)
+
+``` xml
+<tok>
+<orth>Ośmnastego</orth>
+<lex><base>ośmnasty</base><ctag>adj:sg:gen:m1:pos</ctag></lex>
+<lex><base>ośmnasty</base><ctag>adj:sg:gen:m2:pos</ctag></lex>
+<lex disamb="1"><base>ośmnasty</base><ctag>adj:sg:gen:m3:pos</ctag></lex>
+<lex><base>ośmnasty</base><ctag>adj:sg:gen:n:pos</ctag></lex>
+<lex><base>ośmnasty</base><ctag>adj:sg:acc:m1:pos</ctag></lex>
+<lex><base>ośmnasty</base><ctag>adj:sg:acc:m2:pos</ctag></lex>
+</tok>
+<tok>
+<orth>lutego</orth>
+<lex disamb="1"><base>luty</base><ctag>subst:sg:gen:m3</ctag></lex>
+</tok>
+<ns/>
+<tok>
+<orth>,</orth>
+<lex disamb="1"><base>,</base><ctag>interp</ctag></lex>
+</tok>
+<tok>
+<orth>roku</orth>
+<lex disamb="1"><base>rok</base><ctag>subst:sg:gen:m3</ctag></lex>
+<lex><base>rok</base><ctag>subst:sg:loc:m3</ctag></lex>
+<lex><base>rok</base><ctag>subst:sg:voc:m3</ctag></lex>
+</tok>
+<tok>
+<orth>1814</orth>
+<lex disamb="1"><base>1814</base><ctag>tnum:integer</ctag></lex>
+</tok>
+<ns/>
+<tok>
+<orth>,</orth>
+<lex disamb="1"><base>,</base><ctag>interp</ctag></lex>
+</tok>
+<tok>
+<orth>jechał</orth>
+<lex disamb="1"><base>jechać</base><ctag>praet:sg:m1:imperf</ctag></lex>
+<lex><base>jechać</base><ctag>praet:sg:m2:imperf</ctag></lex>
+<lex><base>jechać</base><ctag>praet:sg:m3:imperf</ctag></lex>
+</tok>
+<tok>
+<orth>na</orth>
+<lex disamb="1"><base>na</base><ctag>prep:loc</ctag></lex>
+<lex><base>na</base><ctag>prep:acc</ctag></lex>
+</tok>
+<tok>
+<orth>białym</orth>
+<lex><base>biały</base><ctag>adj:sg:inst:m1:pos</ctag></lex>
+<lex><base>biały</base><ctag>adj:sg:inst:m2:pos</ctag></lex>
+<lex><base>biały</base><ctag>adj:sg:inst:m3:pos</ctag></lex>
+<lex><base>biały</base><ctag>adj:sg:inst:n:pos</ctag></lex>
+<lex><base>biały</base><ctag>adj:sg:loc:m1:pos</ctag></lex>
+<lex disamb="1"><base>biały</base><ctag>adj:sg:loc:m2:pos</ctag></lex>
+<lex><base>biały</base><ctag>adj:sg:loc:m3:pos</ctag></lex>
+<lex><base>biały</base><ctag>adj:sg:loc:n:pos</ctag></lex>
+<lex><base>biały</base><ctag>adj:pl:dat:m1:pos</ctag></lex>
+<lex><base>biały</base><ctag>adj:pl:dat:m2:pos</ctag></lex>
+<lex><base>biały</base><ctag>adj:pl:dat:m3:pos</ctag></lex>
+<lex><base>biały</base><ctag>adj:pl:dat:f:pos</ctag></lex>
+<lex><base>biały</base><ctag>adj:pl:dat:n:pos</ctag></lex>
+</tok>
+<tok>
+<orth>koniu</orth>
+<lex disamb="1"><base>koń</base><ctag>subst:sg:loc:m2</ctag></lex>
+<lex><base>koń</base><ctag>subst:sg:voc:m2</ctag></lex>
+</tok>
+```
+
+
+
+
+
+
+
+
+
+## _Historyje rzymskie_ (1543)
+
+```
+Był jeden rycerz u niektórego króla, który barzo był króla rozgniewał. 
+I posłał ku królowi rycerze, aby mu gniew przeprosili. Tedy oni 
+rycerze za nim prosząc, ledwy mu łaskę uprosili tym obyczajem, 
+aby ku dworu królewskiemu zasię przyszedł jezno i pieszy a aby 
+z sobą przywiódł wiernego  przyjaciela, i też krotofilnika, 
+i nieprzyjaciela niewiernego. A odszedszy jednacze powiedzieli 
+to rycerzowi. Usłyszawszy to, rycerz barzo sie zasmucił, jako by 
+to uczynić miał. I przydało sie czasu tego, że był jednego 
+pielgrzyma na noc przyjął, i rzekł tajemnie ku żonie swej: Wiem, 
+że pielgrzymowie miewają z sobą pieniądze, a przetoż jeźli to 
+chcesz taić, tedy ja zabiję tego pielgrzyma a pieniądze jego 
+pobierzem. A ona to taić obiecała. Gdyż tedy wszytcy spali, 
+wstawszy on rycerz przed świtanim obudził onego pielgrzyma i kazał 
+mu w drogę iść, a zabiwszy cielca, zrąbał go w sztuki i włożył 
+w wór. Potym, obudziwszy swą żonę, ukazał jej wór, mówiąc, żem 
+tylko głowę, nogi a ręce włożył w ten wór, a ciałom pochował 
+w stajni, ale ten wór w tym kącie pogrzebmy. A pogrzebszy on wór, 
+ukazał jej nieco pieniędzy swych, mieniąc, żeby je od tego 
+to pielgrzyma wziął. A gdyż był dzień, aby stanął przed królem, 
+tedy wziąwszy z sobą na prawą stronę psa, a dziecię na rękę, 
+a żonę na lewą stronę, szedł na zamek. A gdyż sie przybliżał 
+do zamku pana swego, włożył prawą nogę na psa swego, jakoby 
+jadąc, a drugą nogą szedł pieszki, a tak szedł jezno i pieszki 
+na zamek. A gdyż przyszedł przed króla, uźrzawszy go król 
+ze wszytkimi około stojącemi dziwował sie, i rzekł jemu król: 
+Gdzie jest twój przyjaciel nawierniejszy? Tedy rycerz wyjąwszy 
+miecz, zaciął psa swego, który skowycząc dla boleści uciekał, 
+zatym go zawołał, a pies zasie przyszedł ku niemu. I rzekł 
+rycerz: To jest mój przyjaciel nawierniejszy. Rzekł jemu król: 
+Prawdę mówisz. Ale gdzie jest twój krotofilnik?
+```
+
+
+
+## St. Orzechowski, _Rozmowa…_ (1561)
+
+``` xml
+<milestone unit="matryca" n="K5457d"/>nie máſz wiáry przećiwko Pánu Bogu/ nie 
+<lb n="18"/>máſz vczćiwośći przećiwko Vrzędom/ nie máſz po= 
+<lb n="19"/>ſłuſzeńſtwá przećiwko Krolom/ prawdy/ wiáry/ 
+<lb n="20"/>ſpráwiedliwośći miedzy námi nie máſz żadney/ peł= 
+<lb n="21"/>no wſzędźie niekokoiá y roſterku. 
+```
+
+
+
+
+
+
+
+## Manifest programowy
+
+**Król, M., Derwojedowa, M., Górski, R. L., Gruszczyński, W., Opaliński, K., 
+Potoniec, P., Woliński, M., Kieraś, W. and Eder, M.** (2019). 
+Narodowy Korpus Diachroniczny Polszczyzny. Projekt. _Język Polski_, 
+**99**: 92–101.
+
+
+
+
+
+
+
+
+## Korpus diachroniczny – zalążek
+
+* XV w.
+    * korpus staropolski IJP PAN
+    * Biblioteka Zabytków...
+    * projekt _Baza leksykalna..._
+* XVI w.
+    * korpus Słownika polszczyzny XVI wieku
+* XVII-XVIII w.
+    * KorBa
+    * KorBa 2.0 + Korbeusz
+* XIX w.
+    * f19 + tager 
+
+---
+
+
+
+## Korpus diachroniczny – założenia
+
+* poszczególne korpusy historyczne zachowują swoją autonomię...
+* ... sposób anotacji, tagsety, ew. transliterację, etc.
+* poszczególne korpusy spaja jedna wspólna wyszukiwarka
+* uspójniony korpus diachroniczny pozwala na włączanie nowych zasobów w miarę ich powstawania
+
+
+
+
+
+## Korpus diachroniczny – problemy (1)
+
+
+* pokrycie diachronicznie polszczyzny 1380-1918?
+    * co do zasady pokrycie epok, których nie obejmuje NKJP
+    * uzupełnienie okresów 'zaniedbanych', np. 1795–1822
+    * pozyskanie materiałów dla XIX wieku
+    * problem zrównoważenia korpusu
+* uzgodnienie/uzupełnienie transkrypcji
+    * teksty staropolskie będą w transkrypcji i transliteracji
+    * teksty XVI wieczne tylko w transkrypcji automatycznej (?)
+    * ryzyko, że teksty XIX-wieczne będą bardziej archaiczne niż teksty dawne
+
+
+
+
+## Korpus diachroniczny – problemy (2)
+
+
+* uzgodnienie/uzupełnienie anotacji fleksyjnej
+    * problem tagsetów
+    * problem zmian w morfologii
+* dostosowanie narzędzi NLP do dawnej polszczyzny
+    * ChronoFlex
+    * tager f19
+    * narzędzia do automatycznej transkrypcji
+    * ...
+* przeszukiwarka wszystkich podkorpusów naraz
+
