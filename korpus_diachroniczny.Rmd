@@ -382,8 +382,8 @@ legend("bottomleft", legend = c("jeśli", "na", "nie", "się", "już", "a", "i")
     * 400 mln słów
 * Google n-grams 1600–2000:
     * 5 bln słów
-* korpus diachroniczny polszczyzny: 
-    * 25 mln słów
+* korpus diachroniczny polszczyzny 1380–1850: 
+    * 12 mln słów
 
 
 
